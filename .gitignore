@@ -1,0 +1,12 @@
+.gradle/
+.vs/
+Library/
+Temp/
+obj/
+Logs/
+*.csproj
+*.sln
+*.suo
+*.apk
+.idea/workspace.xml
+.idea/libraries
