@@ -9,6 +9,9 @@
 // Skipping shader variants that would not be included into build of current scene.
 
 Shader "Custom/Shader01" {
+Properties {
+ _Color ("Color Tint", Color) = (1.000000,1.000000,1.000000,1.000000)
+}
 SubShader { 
  Pass {
   //////////////////////////////////
@@ -27,6 +30,8 @@ Shader Disassembly:
 uniform 	vec4 hlslcc_mtx4x4unity_ObjectToWorld[4];
 uniform 	vec4 hlslcc_mtx4x4unity_MatrixVP[4];
 attribute highp vec4 in_POSITION0;
+attribute highp vec3 in_NORMAL0;
+varying mediump vec3 vs_COLOR0;
 vec4 u_xlat0;
 vec4 u_xlat1;
 void main()
@@ -39,6 +44,8 @@ void main()
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat0.xxxx + u_xlat1;
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat0.zzzz + u_xlat1;
     gl_Position = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat0.wwww + u_xlat1;
+    u_xlat0.xyz = in_NORMAL0.xyz * vec3(0.25, 0.25, 0.25);
+    vs_COLOR0.xyz = u_xlat0.xyz;
     return;
 }
 
@@ -52,10 +59,12 @@ void main()
     precision mediump float;
 #endif
 precision highp int;
+varying mediump vec3 vs_COLOR0;
 #define SV_Target0 gl_FragData[0]
 void main()
 {
-    SV_Target0 = vec4(0.0, 1.0, 1.0, 1.0);
+    SV_Target0.xyz = vs_COLOR0.xyz;
+    SV_Target0.w = 1.0;
     return;
 }
 
@@ -78,6 +87,8 @@ Shader Disassembly:
 uniform 	vec4 hlslcc_mtx4x4unity_ObjectToWorld[4];
 uniform 	vec4 hlslcc_mtx4x4unity_MatrixVP[4];
 attribute highp vec4 in_POSITION0;
+attribute highp vec3 in_NORMAL0;
+varying mediump vec3 vs_COLOR0;
 vec4 u_xlat0;
 vec4 u_xlat1;
 void main()
@@ -90,6 +101,8 @@ void main()
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat0.xxxx + u_xlat1;
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat0.zzzz + u_xlat1;
     gl_Position = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat0.wwww + u_xlat1;
+    u_xlat0.xyz = in_NORMAL0.xyz * vec3(0.25, 0.25, 0.25);
+    vs_COLOR0.xyz = u_xlat0.xyz;
     return;
 }
 
@@ -103,10 +116,12 @@ void main()
     precision mediump float;
 #endif
 precision highp int;
+varying mediump vec3 vs_COLOR0;
 #define SV_Target0 gl_FragData[0]
 void main()
 {
-    SV_Target0 = vec4(0.0, 1.0, 1.0, 1.0);
+    SV_Target0.xyz = vs_COLOR0.xyz;
+    SV_Target0.w = 1.0;
     return;
 }
 
@@ -129,6 +144,8 @@ Shader Disassembly:
 uniform 	vec4 hlslcc_mtx4x4unity_ObjectToWorld[4];
 uniform 	vec4 hlslcc_mtx4x4unity_MatrixVP[4];
 attribute highp vec4 in_POSITION0;
+attribute highp vec3 in_NORMAL0;
+varying mediump vec3 vs_COLOR0;
 vec4 u_xlat0;
 vec4 u_xlat1;
 void main()
@@ -141,6 +158,8 @@ void main()
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat0.xxxx + u_xlat1;
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat0.zzzz + u_xlat1;
     gl_Position = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat0.wwww + u_xlat1;
+    u_xlat0.xyz = in_NORMAL0.xyz * vec3(0.25, 0.25, 0.25);
+    vs_COLOR0.xyz = u_xlat0.xyz;
     return;
 }
 
@@ -154,10 +173,12 @@ void main()
     precision mediump float;
 #endif
 precision highp int;
+varying mediump vec3 vs_COLOR0;
 #define SV_Target0 gl_FragData[0]
 void main()
 {
-    SV_Target0 = vec4(0.0, 1.0, 1.0, 1.0);
+    SV_Target0.xyz = vs_COLOR0.xyz;
+    SV_Target0.w = 1.0;
     return;
 }
 
@@ -180,6 +201,8 @@ Shader Disassembly:
 uniform 	vec4 hlslcc_mtx4x4unity_ObjectToWorld[4];
 uniform 	vec4 hlslcc_mtx4x4unity_MatrixVP[4];
 in highp vec4 in_POSITION0;
+in highp vec3 in_NORMAL0;
+out mediump vec3 vs_COLOR0;
 vec4 u_xlat0;
 vec4 u_xlat1;
 void main()
@@ -192,6 +215,8 @@ void main()
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat0.xxxx + u_xlat1;
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat0.zzzz + u_xlat1;
     gl_Position = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat0.wwww + u_xlat1;
+    u_xlat0.xyz = in_NORMAL0.xyz * vec3(0.25, 0.25, 0.25);
+    vs_COLOR0.xyz = u_xlat0.xyz;
     return;
 }
 
@@ -201,10 +226,12 @@ void main()
 
 precision highp float;
 precision highp int;
+in mediump vec3 vs_COLOR0;
 layout(location = 0) out mediump vec4 SV_Target0;
 void main()
 {
-    SV_Target0 = vec4(0.0, 1.0, 1.0, 1.0);
+    SV_Target0.xyz = vs_COLOR0.xyz;
+    SV_Target0.w = 1.0;
     return;
 }
 
@@ -227,6 +254,8 @@ Shader Disassembly:
 uniform 	vec4 hlslcc_mtx4x4unity_ObjectToWorld[4];
 uniform 	vec4 hlslcc_mtx4x4unity_MatrixVP[4];
 in highp vec4 in_POSITION0;
+in highp vec3 in_NORMAL0;
+out mediump vec3 vs_COLOR0;
 vec4 u_xlat0;
 vec4 u_xlat1;
 void main()
@@ -239,6 +268,8 @@ void main()
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat0.xxxx + u_xlat1;
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat0.zzzz + u_xlat1;
     gl_Position = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat0.wwww + u_xlat1;
+    u_xlat0.xyz = in_NORMAL0.xyz * vec3(0.25, 0.25, 0.25);
+    vs_COLOR0.xyz = u_xlat0.xyz;
     return;
 }
 
@@ -248,10 +279,12 @@ void main()
 
 precision highp float;
 precision highp int;
+in mediump vec3 vs_COLOR0;
 layout(location = 0) out mediump vec4 SV_Target0;
 void main()
 {
-    SV_Target0 = vec4(0.0, 1.0, 1.0, 1.0);
+    SV_Target0.xyz = vs_COLOR0.xyz;
+    SV_Target0.w = 1.0;
     return;
 }
 
@@ -274,6 +307,8 @@ Shader Disassembly:
 uniform 	vec4 hlslcc_mtx4x4unity_ObjectToWorld[4];
 uniform 	vec4 hlslcc_mtx4x4unity_MatrixVP[4];
 in highp vec4 in_POSITION0;
+in highp vec3 in_NORMAL0;
+out mediump vec3 vs_COLOR0;
 vec4 u_xlat0;
 vec4 u_xlat1;
 void main()
@@ -286,6 +321,8 @@ void main()
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[0] * u_xlat0.xxxx + u_xlat1;
     u_xlat1 = hlslcc_mtx4x4unity_MatrixVP[2] * u_xlat0.zzzz + u_xlat1;
     gl_Position = hlslcc_mtx4x4unity_MatrixVP[3] * u_xlat0.wwww + u_xlat1;
+    u_xlat0.xyz = in_NORMAL0.xyz * vec3(0.25, 0.25, 0.25);
+    vs_COLOR0.xyz = u_xlat0.xyz;
     return;
 }
 
@@ -295,10 +332,12 @@ void main()
 
 precision highp float;
 precision highp int;
+in mediump vec3 vs_COLOR0;
 layout(location = 0) out mediump vec4 SV_Target0;
 void main()
 {
-    SV_Target0 = vec4(0.0, 1.0, 1.0, 1.0);
+    SV_Target0.xyz = vs_COLOR0.xyz;
+    SV_Target0.w = 1.0;
     return;
 }
 
